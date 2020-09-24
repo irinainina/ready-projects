@@ -10,6 +10,7 @@ class Calculator {
     this.currentOperand = '';
     this.previousOperand = '';
     this.operation = undefined;
+    this.readyToReset = false;
   }
 
   delete() {
