@@ -13,7 +13,7 @@ body {
   text-align: center;
   height: 100vh;
   background-size: cover;
-  color: black;
+  color: #fff;
 }
 
 body:after {
@@ -37,7 +37,7 @@ h1 {
 
 h2 {
   margin-bottom: 0.5rem;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 @media (max-width: 700px) {
