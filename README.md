@@ -1,5 +1,7 @@
 # Прогноз погоды в 20 строк
 
+Создадим небольшое приложение с прогнозом погоды для указанного пользователем города
+
 ## Регистрация
 
 Регистрируемся здесь https://home.openweathermap.org/users/sign_up
@@ -148,5 +150,5 @@ city.addEventListener('keypress', setCity);
 
 Добавим немного стилей и приложение погоды готово.
 
-[Код приложения](https://github.com/irinainina/ready-projects/tree/weather/weather)
+[Код приложения](https://github.com/irinainina/ready-projects/tree/weather/weather)  
 [Demo](https://irinainina.github.io/ready-projects/weather/)
