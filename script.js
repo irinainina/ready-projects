@@ -3,7 +3,26 @@ class Calculator {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
     this.readyToReset = false;
+    this.sign = false;
     this.clear();
+  }
+
+  root() {
+    if (this.currentOperand === '') return;
+    if (this.currentOperand < 0) return this.currentOperand = 'Ошибка';
+    this.currentOperand = Math.sqrt(this.currentOperand);
+  }
+
+  signChange() {
+    if (this.currentOperand === '' || this.currentOperand == 0) return;
+    else if (this.sign == false && this.currentOperand > 0) {
+      this.currentOperand = `-${this.currentOperand}`;
+      this.sign = true;
+    }
+      else {
+        this.currentOperand = Math.abs(this.currentOperand);
+        this.sign = false;
+      }
   }
 
   clear() {
@@ -11,6 +30,7 @@ class Calculator {
     this.previousOperand = '';
     this.operation = undefined;
     this.readyToReset = false;
+    this.sign = false;
   }
 
   delete() {
@@ -30,28 +50,32 @@ class Calculator {
     this.operation = operation;
     this.previousOperand = this.currentOperand;
     this.currentOperand = '';
+    this.sign = false;
   }
 
   compute() {
     let computation;
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
-    if (isNaN(prev) || isNaN(current)) return;
+    if (isNaN(prev) || isNaN(current))  return
     switch (this.operation) {
-      case '+':
-        computation = prev + current;
-        break
-      case '-':
-        computation = prev - current;
-        break
-      case '*':
-        computation = prev * current;
-        break
-      case '÷':
-        computation = prev / current;
-        break
-      default:
-        return;
+          case '+':
+            computation = (prev * 10 + current * 10) / 10;
+            break
+          case '-':
+            computation = (prev * 10 - current * 10) / 10;
+            break
+          case '*':
+            computation = ((prev * 10) * (current * 10)) / 100;
+            break
+          case '÷':
+            computation = (prev * 10 / current * 10) / 100;
+            break
+          case 'pow':
+            computation = Math.pow(prev, current);
+            break 
+          default:
+            return;
     }
     this.readyToReset = true;
     this.currentOperand = computation;
@@ -63,7 +87,7 @@ class Calculator {
     const stringNumber = number.toString()
     const integerDigits = parseFloat(stringNumber.split('.')[0])
     const decimalDigits = stringNumber.split('.')[1]
-    let integerDisplay
+    let integerDisplay;
     if (isNaN(integerDigits)) {
       integerDisplay = ''
     } else {
@@ -77,6 +101,7 @@ class Calculator {
   }
 
   updateDisplay() {
+    if (this.currentOperand === 'Ошибка') return this.currentOperandTextElement.innerText = this.currentOperand;
     this.currentOperandTextElement.innerText =
       this.getDisplayNumber(this.currentOperand)
     if (this.operation != null) {
@@ -88,7 +113,6 @@ class Calculator {
   }
 }
 
-
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
 const equalsButton = document.querySelector('[data-equals]');
@@ -96,6 +120,8 @@ const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
+const signChangeButton = document.querySelector('[data-minus-plus]');
+const rootButton = document.querySelector('[data-root]');
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
@@ -132,5 +158,15 @@ allClearButton.addEventListener('click', button => {
 
 deleteButton.addEventListener('click', button => {
   calculator.delete();
+  calculator.updateDisplay();
+})
+
+signChangeButton.addEventListener('click', button => {
+  calculator.signChange();
+  calculator.updateDisplay();
+})
+
+rootButton.addEventListener('click', button => {
+  calculator.root();
   calculator.updateDisplay();
 })
