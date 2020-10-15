@@ -8,14 +8,12 @@ class Calculator {
   }
 
   root() {
-    debugger;
     if (this.currentOperand === '') return;
     if (this.currentOperand < 0) return this.currentOperand = 'Ошибка';
     this.currentOperand = Math.sqrt(this.currentOperand);
   }
 
   signChange() {
-    debugger;
     if (this.currentOperand === '' || this.currentOperand == 0) return;
     else if (this.sign == false && this.currentOperand > 0) {
       this.currentOperand = `-${this.currentOperand}`;
@@ -56,7 +54,6 @@ class Calculator {
   }
 
   compute() {
-    debugger;
     let computation;
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
@@ -87,7 +84,6 @@ class Calculator {
   }
 
   getDisplayNumber(number) {
-    debugger;
     const stringNumber = number.toString()
     const integerDigits = parseFloat(stringNumber.split('.')[0])
     const decimalDigits = stringNumber.split('.')[1]
@@ -130,7 +126,6 @@ const rootButton = document.querySelector('[data-root]');
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
 numberButtons.forEach(button => {
-  debugger;
   button.addEventListener("click", () => {
 
       if(calculator.previousOperand === "" &&
@@ -145,7 +140,6 @@ numberButtons.forEach(button => {
 })
 
 operationButtons.forEach(button => {
-  debugger;
   button.addEventListener('click', () => {
     calculator.chooseOperation(button.innerText);
     calculator.updateDisplay();
@@ -168,13 +162,11 @@ deleteButton.addEventListener('click', button => {
 })
 
 signChangeButton.addEventListener('click', button => {
-  debugger;
   calculator.signChange();
   calculator.updateDisplay();
 })
 
 rootButton.addEventListener('click', button => {
-  debugger;
   calculator.root();
   calculator.updateDisplay();
 })
