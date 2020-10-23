@@ -9,6 +9,7 @@ const time = document.querySelector('.time'),
   quote = document.querySelector('.quote'),
   weatherIcon = document.querySelector('.weather-icon'),
   temperature = document.querySelector('.temperature'),
+  wind = document.querySelector('.wind'),
   weatherDescription = document.querySelector('.weather-description'),
   city = document.querySelector('.city');
 
@@ -54,17 +55,17 @@ function setBgGreet() {
   let today = new Date(),
     hour = today.getHours();
 
-  if (hour < 12) {
+  if (hour > 6 && hour < 12) {
     // Morning
     document.body.style.backgroundImage =
       "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
     greeting.textContent = 'Good Morning, ';
-  } else if (hour < 18) {
+  } else if (hour >= 12 && hour < 18) {
     // Afternoon
     document.body.style.backgroundImage =
       "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
     greeting.textContent = 'Good Afternoon, ';
-  } else if (hour < 24) {
+  } else if (hour >= 18 && hour < 24) {
     // Evening
     document.body.style.backgroundImage = "url('https://i.ibb.co/924T2Wv/night.jpg')";
     greeting.textContent = 'Good Evening, ';
@@ -148,10 +149,13 @@ async function getWeather() {
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${data.main.temp}°C`;
+  wind.textContent = `${data.wind.speed}m/s`;   // почему не работает????
+
+
   weatherDescription.textContent = data.weather[0].description;
 }
-// Set Weather - не работает ?!!!!
 
+// Set Weather 
 function setCity(event) {
   if (event.code === 'Enter') {
     getWeather();
@@ -160,10 +164,35 @@ function setCity(event) {
 }
 
 
+const base = 'https://raw.githubusercontent.com/filonushka/ready-projects/momentum/momentum/assets/images/night/';
+const images = ['01.jpg', '02.jpg', '03.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
+let i = 0;
+
+function viewBgImage(data) {
+  const body = document.querySelector('body');
+  const src = data;
+  const img = document.createElement('img');
+  img.src = src;
+  img.onload = () => {
+    body.style.backgroundImage = `url(${src})`;
+  };
+}
+function getImage() {
+  const index = i % images.length;
+  const imageSrc = base + images[index];
+  viewBgImage(imageSrc);
+  i++;
+  btnPicture.disabled = true;
+  setTimeout(function () { btnPicture.disabled = false }, 1000);
+}
+const btnPicture = document.querySelector('.btn_picture');
+btnPicture.addEventListener('click', getImage);
+
 // Run
 
 showTime();
 setBgGreet();
 getName();
 getFocus();
-getWeather()
+getWeather();
+getQuote();

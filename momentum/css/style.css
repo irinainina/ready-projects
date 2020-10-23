@@ -5,24 +5,33 @@
 }
 
 body {
+  margin: 0px;
   font-family: 'Quicksand', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 100vh;
-  background-size: cover;
   color: #000000; 
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center center;
+  background-image: url("https://raw.githubusercontent.com/filonushka/ready-projects/momentum/momentum/assets/images/night/17.jpg");  
+  /* transition: background-image 1s ease-in-out; */
 }
 
-.weather {
-  background-color: rgba(255, 255, 255, 0.25);
-  border: none;
-  border-radius: 15px;
+.upper_div{
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
 }
-.city {  
-  
+.weather_table {
+  display: flex;
+  flex-direction: ;
+}
+
+.city {   
   font-size: 20px;
   padding: 10px 0;
   margin: 0 auto;
@@ -83,7 +92,7 @@ h2 {
 }
 
 .quote-box {
-  background-color: rgba(255, 255, 255, 0.25);
+  /* background-color: rgba(255, 255, 255, 0.25); */
   padding: 1rem 10rem;
   margin-top: 7rem;
   border: none;
@@ -98,11 +107,35 @@ h2 {
   font-style: italic;
 }
 .btn {
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 1rem 1rem;
-  margin-top: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.25);
+  padding: 0.5rem 0.5rem;
+  margin-top: 0.5rem;
   border: none;
   border-radius: 15px;
+}
+
+.btn_picture {
+  width: 40px;
+  height: 40px;
+  align-items: right;
+  border: 0;
+  background: url("https://www.pngarts.com/files/7/Update-Button-PNG-Image.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: grayscale(1);
+  margin: 10px;
+  background-color: none;
+}
+.btn_picture:hover {
+  filter: grayscale(0.8);
+}
+
+.btn_picture:active,
+.btn_picture:focus {
+  outline: 0;
+}
+.btn_picture:active{
+  transform: scale(1.02)
 }
 @media (max-width: 700px) {
   .time, .calendar{
