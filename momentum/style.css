@@ -20,6 +20,10 @@ body {
   font-size: 8rem;
 }
 
+.time-day{
+  font-size: 0.2em;
+}
+
 h1 {
   margin-bottom: 3rem;
 }
