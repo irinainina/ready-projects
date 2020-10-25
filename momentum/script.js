@@ -145,7 +145,7 @@ focus.addEventListener('click', clearField);
 button.addEventListener("click",()=>{
   setBgGreet(imgNumber++);
   button.disabled = true;
-  setTimeout(()=>{button.disabled = false}, 500);
+  setTimeout(()=>{button.disabled = false}, 1000);
 });
 
 // Run
