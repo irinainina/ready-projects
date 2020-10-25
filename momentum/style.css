@@ -33,8 +33,83 @@ h2 {
   opacity: 0.8;
 }
 
+
 @media (max-width: 700px) {
   .time {
     font-size: 6rem;
   }
+}
+
+
+
+
+
+
+
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700italic);
+
+.sub-main{
+  position: relative;
+}
+
+button{
+  color:#fff;
+  text-align: center;
+  padding: 20px;
+}
+/*Button Two*/
+.button-two {
+  text-align: center;
+  font-size:18px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: rgb(0,0,0,0.5);
+  border: none;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+}
+/* .button-two::before{
+  content: "";
+  
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  padding: 15px;
+  width: 50px;
+  position: absolute;
+  opacity: 25%;
+  background-color:#000;
+}
+.button-two::before:hover {
+  padding-right: 25px;
+} */
+
+
+.button-two span {  
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button-two span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button-two:hover span {
+  padding-right: 25px;
+}
+
+.button-two:hover span:after {
+  opacity: 1;
+  right: 0;
 }
