@@ -4,6 +4,8 @@ const time = document.querySelector('.time'),
   name = document.querySelector('.name'),
   focus = document.querySelector('.focus');
 
+  name.style = "display:inline-block; min-width:10px;"
+
 // Options
 const showAmPm = true;
 const localArea = "en-us";
@@ -16,7 +18,7 @@ function showTime() {
     sec = today.getSeconds(),
     day = today.getDate(),
     weekDay = today.toLocaleString(localArea, { weekday: 'long' }),
-    month = today.toLocaleString(localArea, {month: 'long'});
+    month = today.toLocaleString(localArea, { month: 'long' });
 
   // Set AM or PM
   const amPm = hour >= 12 ? 'PM' : 'AM';
@@ -82,6 +84,9 @@ function setName(e) {
       name.blur();
     }
   } else {
+    if (e.target.innerHTML.trim() == "") {
+      e.target.innerHTML = localStorage.getItem('name') || '[Enter Focus]'
+    }
     localStorage.setItem('name', e.target.innerText);
   }
 }
@@ -104,14 +109,28 @@ function setFocus(e) {
       focus.blur();
     }
   } else {
+    if (e.target.innerHTML.trim() == "") {
+      e.target.innerHTML = localStorage.getItem('focus') || '[Name]'
+    }
     localStorage.setItem('focus', e.target.innerText);
   }
 }
 
+function clearField(e) {
+  if(!e.target.innerHTML.match(`${window.getSelection()}`)[0]){
+    console.log(`${window.getSelection()}`);  
+    e.target.innerHTML = '';
+  }
+}
+
+
+
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
+name.addEventListener('click', clearField);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
+focus.addEventListener('click', clearField);
 
 // Run
 showTime();
