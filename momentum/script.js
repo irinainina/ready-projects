@@ -85,7 +85,7 @@ function setName(e) {
     }
   } else {
     if (e.target.innerHTML.trim() == "") {
-      e.target.innerHTML = localStorage.getItem('name') || '[Enter Focus]'
+      e.target.innerHTML = localStorage.getItem('name') || '[Name]'
     }
     localStorage.setItem('name', e.target.innerText);
   }
